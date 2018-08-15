@@ -91,7 +91,7 @@ for index, char in enumerate(winlinkpassword):
     if index == int(lettera1):
         carattere_lettera1 = char
 
-logger.info('Lettera1: %s - Lettera2: %s - Lettera3: %s', carattere_lettera1, carattere_lettera2, carattere_lettera3)
+logger.info('Carattere1: %s - Carattere2: %s - Carattere3: %s', carattere_lettera1, carattere_lettera2, carattere_lettera3)
 caratteri_da_inviare = carattere_lettera1 + carattere_lettera2 + carattere_lettera3 + "ABC"
 print caratteri_da_inviare
 tn.read_until("CMS>\r", 5)
