@@ -66,6 +66,8 @@ winlinkpassfirst = "CMSTELNET"
 tn = telnetlib.Telnet()
 tn.set_debuglevel(10)
 tn.open(winlinkhost, int(winlinkport))
+logger.info('------------------')
+logger.info('Inizio sessione')
 tn.read_until("Callsign :",5)
 tn.write(winlinkusername.encode('ascii') + b"\r")
 if winlinkpassfirst:
@@ -99,5 +101,7 @@ tn.write(caratteri_da_inviare.encode('ascii') + b"\r")
 tn.read_until("CMS>\r", 5)
 tn.write("LM\r")
 #tn.write("bye\r")
+logger.info('Fine sessione')
+logger.info('------------------')
 
 
