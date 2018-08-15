@@ -40,15 +40,15 @@ import telnetlib
 # Leggo il file di configurazione
 cfg = configparser.RawConfigParser()
 try:
-        #attempt to read the config file winlinktodapnet.cfg
-        config_file = os.path.join(os.path.dirname(__file__),'winlinktodapnet.cfg')
-        cfg.read(config_file)
+    # attempt to read the config file winlinktodapnet.cfg
+    config_file = os.path.join(os.path.dirname(__file__), 'winlinktodapnet.cfg')
+    cfg.read(config_file)
 except:
-        #no luck reading the config file, write error and bail out
-        logger.error('winlinktodapnet could not find / read config file')
-        sys.exit(0)
+    # no luck reading the config file, write error and bail out
+    logger.error('winlinktodapnet could not find / read config file')
+    sys.exit(0)
 
-#logging.basicConfig(filename='winlinktodapnet.log',level=logging.INFO) # level=10
+# logging.basicConfig(filename='winlinktodapnet.log',level=logging.INFO) # level=10
 logger = logging.getLogger('wlnk2dapnet')
 handler = logging.FileHandler('winlinktodapnet.log')
 logformat = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
@@ -57,14 +57,14 @@ logger.addHandler(handler)
 logger.setLevel(logging.INFO)
 
 # Leggo le credenziali per WINLINK
-winlinkusername = cfg.get('winlink','username')
-winlinkpassword = cfg.get('winlink','password')
-winlinkhost = cfg.get('winlink','host')
-winlinkport = cfg.get('winlink','port')
+winlinkusername = cfg.get('winlink', 'username')
+winlinkpassword = cfg.get('winlink', 'password')
+winlinkhost = cfg.get('winlink', 'host')
+winlinkport = cfg.get('winlink', 'port')
 winlinkpassfirst = "CMSTELNET"
 
-tn = telnetlib.Telnet(winlinkhost)
-
+tn = telnetlib.Telnet()
+tn.open(winlinkhost, winlinkport)
 tn.read_until("Callsign: ")
 tn.write(winlinkusername + "\n")
 if winlinkpassfirst:
