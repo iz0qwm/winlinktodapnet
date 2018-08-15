@@ -95,7 +95,6 @@ caratteri_da_inviare = carattere_lettera1 + carattere_lettera2 + carattere_lette
 print caratteri_da_inviare
 tn.read_until("CMS>\r", 5)
 tn.write(caratteri_da_inviare.encode('ascii') + b"\r")
-tn.write("LM\r")
 tn.read_until("CMS>\r", 5)
 tn.write("bye\r")
 
