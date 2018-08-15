@@ -20,18 +20,12 @@ import logging
 import urllib2
 import urllib3
 import time
-import sched
 from time import sleep
 from datetime import datetime
-import json
-import base64
-import math
-import re
 import sys
 import configparser
 import os
 import requests
-import websocket
 import string
 import telnetlib
 
