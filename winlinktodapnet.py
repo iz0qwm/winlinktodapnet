@@ -67,7 +67,7 @@ hampagerpassword = cfg.get('dapnet','password')
 hampagerurl = cfg.get('dapnet','baseurl') + cfg.get('dapnet','coreurl')
 
 tn = telnetlib.Telnet()
-tn.set_debuglevel(10)
+# tn.set_debuglevel(10)
 tn.open(winlinkhost, int(winlinkport))
 logger.info('------------------')
 logger.info('Inizio sessione')
