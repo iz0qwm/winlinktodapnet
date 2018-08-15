@@ -98,7 +98,7 @@ for index, char in enumerate(winlinkpassword):
         carattere_lettera1 = char
 
 logger.info('Carattere1: %s - Carattere2: %s - Carattere3: %s', carattere_lettera1, carattere_lettera2, carattere_lettera3)
-# In più si aggiungono altri tre caratteri
+# In piu si aggiungono altri tre caratteri
 caratteri_da_inviare = carattere_lettera1 + carattere_lettera2 + carattere_lettera3 + "ABC"
 logger.info('Invio la password challenge: %s', caratteri_da_inviare)
 #print caratteri_da_inviare
