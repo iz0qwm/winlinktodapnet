@@ -118,7 +118,7 @@ if intestazione.find("No pending messages") == -1:
     http = urllib3.PoolManager()
     headers = urllib3.util.make_headers(basic_auth= hampagerusername + ':' + hampagerpassword)
     da = "WINLINK"
-    payload = '{ "text": "'+ da +': ' + intestazione[13:1] +'", "callSignNames": [ "' + hampagerusername + '" ], "transmitterGroupNames": [ "italia" ], "emergency": false}' ": [ "italia" ], "emergency": false}'
+    payload = '{ "text": "'+ da +': ' + intestazione[13:1] +'", "callSignNames": [ "' + hampagerusername + '" ], "transmitterGroupNames": [ "italia" ], "emergency": false}'
 
     try:
         # try to establish connection to DAPNET
