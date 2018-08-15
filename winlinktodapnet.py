@@ -71,7 +71,9 @@ tn.write(winlinkusername.encode('ascii') + "\n")
 if winlinkpassfirst:
     tn.read_until("Password: ", 5)
     tn.write(winlinkpassfirst.encode('ascii') + "\n")
+tn.read_until("CMS> ", 5)
+tn.write("LM\n")
 
 tn.write("bye\n")
 
-print (tn.read_all().decode('ascii'))
+print tn.read_all()
