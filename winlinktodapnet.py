@@ -93,11 +93,11 @@ for index, char in enumerate(winlinkpassword):
 
 logger.info('Carattere1: %s - Carattere2: %s - Carattere3: %s', carattere_lettera1, carattere_lettera2, carattere_lettera3)
 caratteri_da_inviare = carattere_lettera1 + carattere_lettera2 + carattere_lettera3 + "ABC"
-print caratteri_da_inviare
+#print caratteri_da_inviare
 tn.read_until("CMS>\r", 5)
 tn.write(caratteri_da_inviare.encode('ascii') + b"\r")
 tn.read_until("CMS>\r", 5)
 tn.write("LM\r")
-tn.write("bye\r")
+#tn.write("bye\r")
 
 
