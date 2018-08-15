@@ -71,7 +71,6 @@ if winlinkpassfirst:
     tn.read_until("Password: ")
     tn.write(winlinkpassfirst + "\n")
 
-tn.write("ls\n")
 tn.write("exit\n")
 
 print tn.read_all()
