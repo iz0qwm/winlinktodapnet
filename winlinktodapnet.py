@@ -68,20 +68,24 @@ tn.set_debuglevel(10)
 tn.open(winlinkhost, int(winlinkport))
 logger.info('------------------')
 logger.info('Inizio sessione')
+# Login con password CMSTELNET
 tn.read_until("Callsign :",5)
 tn.write(winlinkusername.encode('ascii') + b"\r")
 if winlinkpassfirst:
     tn.read_until("Password :",5)
     tn.write(winlinkpassfirst.encode('ascii') + b"\r")
 tn.read_until("CMS>\r", 5)
+# Invio qualsiasi comando per ricevere la richiesta di challenge
 tn.write("LM\r")
+# Interpreto la richiesta Es. Login [564] - Dove 564 sono le posizioni delle lettere della
+# password ad iniziare da 1
 login = tn.expect([r"Login [[0-9][0-9][0-9][0-9]"], 5)
 login_completo = login[2]
 login_password = login_completo[7:10]
 lettera1 = login_password[0:1]
 lettera2 = login_password[1:2]
 lettera3 = login_password[2:3]
-logger.info('Lettera1: %s - Lettera2: %s - Lettera3: %s', lettera1, lettera2, lettera3)
+logger.info('Posizione1: %s - Posizione2: %s - Posizione3: %s', lettera1, lettera2, lettera3)
 #print lettera1
 #print lettera2
 #print lettera3
@@ -94,12 +98,15 @@ for index, char in enumerate(winlinkpassword):
         carattere_lettera1 = char
 
 logger.info('Carattere1: %s - Carattere2: %s - Carattere3: %s', carattere_lettera1, carattere_lettera2, carattere_lettera3)
+# In più si aggiungono altri tre caratteri
 caratteri_da_inviare = carattere_lettera1 + carattere_lettera2 + carattere_lettera3 + "ABC"
+logger.info('Invio la password challenge: %s', caratteri_da_inviare)
 #print caratteri_da_inviare
 tn.read_until("CMS>\r", 5)
 tn.write(caratteri_da_inviare.encode('ascii') + b"\r")
 tn.read_until("CMS>\r", 5)
 tn.write("LM\r")
+print tn.read_eager()
 tn.read_until("CMS>\r", 10)
 tn.write("bye\r")
 logger.info('Fine sessione')
