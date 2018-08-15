@@ -75,7 +75,7 @@ tn.read_until("CMS>\r", 5)
 tn.write("LM\r")
 login = tn.expect([r"Login [[0-9][0-9][0-9][0-9]"], 5)
 login_completo = login[2]
-login_password = login_completo[8:10]
+login_password = login_completo[7:10]
 print login_password
 tn.read_until("CMS>\r", 5)
 tn.write("bye\r")
