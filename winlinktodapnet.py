@@ -73,7 +73,7 @@ if winlinkpassfirst:
     tn.write(winlinkpassfirst.encode('ascii') + b"\r")
 tn.read_until("CMS>\r", 5)
 tn.write("LM\r")
-login = tn.expect([r"Login [", r"\0-9", r"\0-9", r"\0-9", "]:"], 10)
+login = tn.expect([r"Login [", r"\[0-9]", r"\[0-9]", r"\[0-9]", "]:"], 10)
 tn.read_until("CMS>\r", 5)
 tn.write("bye\r")
 print tn.read_all()
