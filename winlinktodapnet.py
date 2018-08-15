@@ -64,6 +64,7 @@ winlinkport = cfg.get('winlink', 'port')
 winlinkpassfirst = "CMSTELNET"
 
 tn = telnetlib.Telnet()
+tn.set_debuglevel(10)
 tn.open(winlinkhost, int(winlinkport))
 tn.read_until("Callsign: ", 5)
 tn.write(winlinkusername.encode('ascii') + "\n")
