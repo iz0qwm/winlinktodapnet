@@ -91,6 +91,7 @@ for index, char in enumerate(winlinkpassword):
         carattere_lettera3 = char
 caratteri_da_inviare = carattere_lettera1 + carattere_lettera2 + carattere_lettera3 + "ABC"
 print caratteri_da_inviare
+tn.write(caratteri_da_inviare.encode('ascii') + b"\r")
 tn.read_until("CMS>\r", 5)
 
 tn.write("bye\r")
