@@ -60,4 +60,3 @@ logger.setLevel(logging.INFO)
 # Leggo le credenziali per WINLINK
 winlinkusername = cfg.get('user','username')
 winlinkpassword = cfg.get('user','password')
-hampagerurl = cfg.get('dapnet','baseurl') + cfg.get('dapnet','coreurl')
