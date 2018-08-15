@@ -77,4 +77,4 @@ login = tn.expect([r"Login [[0-9][0-9][0-9][0-9]"], 5)
 tn.read_until("CMS>\r", 5)
 tn.write("bye\r")
 
-print login
+print login[2]
