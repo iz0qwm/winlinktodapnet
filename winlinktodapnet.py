@@ -72,8 +72,9 @@ if winlinkpassfirst:
     tn.read_until("Password: ", 5)
     tn.write(winlinkpassfirst.encode('ascii') + "\n")
 tn.read_until("CMS> ", 5)
+print tn.read_eager()
 tn.write("LM\n")
-
+print tn.read_eager()
 tn.write("bye\n")
-
+print tn.read_eager()
 print tn.read_all()
