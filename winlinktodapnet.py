@@ -21,8 +21,6 @@ import time
 import sched
 from time import sleep
 from datetime import datetime
-import urllib2
-import urllib3
 import json
 import base64
 import math
@@ -37,6 +35,7 @@ import requests
 import websocket
 import string
 from random import randint
+import telnetlib
 
 # Leggo il file di configurazione
 cfg = configparser.RawConfigParser()
@@ -50,7 +49,7 @@ except:
         sys.exit(0)
 
 #logging.basicConfig(filename='winlinktodapnet.log',level=logging.INFO) # level=10
-logger = logging.getLogger('dapnet')
+logger = logging.getLogger('wlnk2dapnet')
 handler = logging.FileHandler('winlinktodapnet.log')
 logformat = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 handler.setFormatter(logformat)
