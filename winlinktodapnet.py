@@ -79,7 +79,7 @@ login_password = login_completo[7:10]
 lettera1 = login_password[0:1]
 lettera2 = login_password[1:2]
 lettera3 = login_password[2:3]
-logger("Lettera1: %s - Lettera2: %s - Lettera3: %s", lettera1, lettera2, lettera3)
+logger.info('Lettera1: %s - Lettera2: %s - Lettera3: %s', lettera1, lettera2, lettera3)
 #print lettera1
 #print lettera2
 #print lettera3
@@ -90,7 +90,7 @@ for index, char in enumerate(winlinkpassword):
         carattere_lettera2 = char
     if index == int(lettera3):
         carattere_lettera3 = char
-logger("Lettera1: %s - Lettera2: %s - Lettera3: %s", carattere_lettera1, carattere_lettera2, carattere_lettera3)
+logger.info('Lettera1: %s - Lettera2: %s - Lettera3: %s', carattere_lettera1, carattere_lettera2, carattere_lettera3)
 caratteri_da_inviare = carattere_lettera1 + carattere_lettera2 + carattere_lettera3 + "ABC"
 print caratteri_da_inviare
 tn.write(caratteri_da_inviare.encode('ascii') + b"\r")
