@@ -6,12 +6,11 @@ port = 8772
 
 [dapnet]
 user = iz0qwm
+password = password
 transmittergrp = all
 baseurl = http://www.dapnet-italia.it:8080
 coreurl = /calls
 trxurl = /transmitters
-statefile = /opt/dapnet/Core/local/data/State.json
-transmitterws = ws://localhost:8055/
 
 [misc]
 logfile = /opt/winlinktodapnet/winlinktodapnet.log

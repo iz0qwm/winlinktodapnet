@@ -17,6 +17,8 @@
 # Version 0.1
 
 import logging
+import urllib2
+import urllib3
 import time
 import sched
 from time import sleep
@@ -24,9 +26,6 @@ from datetime import datetime
 import json
 import base64
 import math
-import threading
-from threading import Timer
-import thread
 import re
 import sys
 import configparser
@@ -34,7 +33,6 @@ import os
 import requests
 import websocket
 import string
-from random import randint
 import telnetlib
 
 # Leggo il file di configurazione
@@ -62,6 +60,11 @@ winlinkpassword = cfg.get('winlink', 'password')
 winlinkhost = cfg.get('winlink', 'host')
 winlinkport = cfg.get('winlink', 'port')
 winlinkpassfirst = "CMSTELNET"
+
+# Leggo le credenziali per DAPNET
+hampagerusername = cfg.get('dapnet','user')
+hampagerpassword = cfg.get('dapnet','password')
+hampagerurl = cfg.get('dapnet','baseurl') + cfg.get('dapnet','coreurl')
 
 tn = telnetlib.Telnet()
 tn.set_debuglevel(10)
@@ -106,8 +109,33 @@ tn.read_until("CMS>\r", 5)
 tn.write(caratteri_da_inviare.encode('ascii') + b"\r")
 tn.read_until("CMS>\r", 5)
 tn.write("LM\r")
-intestazione = tn.read_until("\r\r")
+# Leggo i messaggi nuovi
+intestazione = tn.read_until("\r")
 logger.info('Intestazione: %s', intestazione)
+if intestazione.find("No pending messages") == -1:
+    # Invio messaggio -> DAPNET
+    #create the complete URL to send to DAPNET
+    http = urllib3.PoolManager()
+    headers = urllib3.util.make_headers(basic_auth= hampagerusername + ':' + hampagerpassword)
+    da = hampagerusername
+    to = hampagerusername
+    payload = '{ "text": "'+ da +': ' + intestazione +'", "callSignNames": [ "' + to + '" ], "transmitterGroupNames": [ "italia" ], "emergency": false}'
+
+    try:
+        #try to establish connection to DAPNET
+        response = requests.post(hampagerurl, headers=headers, data=payload)
+    except:
+        #connection to DAPNET failed, write warning to console, write warning to error log then bail out
+        logger.error('Invalid DAPNET credentials or payload not well done')
+        sys.exit(0)
+    else:
+        #connection to DAPNET has been established, continue
+        logger.info('-------------------------------------------')
+        logger.info('MESSAGGIO INVIATO SU DAPNET')
+        logger.info('-------------------------------------------')
+else:
+    logger.info('Non invio nulla su pager')
+# Continuo e chiudo la comunicazione
 tn.read_until("CMS>\r", 5)
 tn.write("bye\r")
 logger.info('Fine sessione')
