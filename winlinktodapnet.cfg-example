@@ -1,9 +1,8 @@
-[user]
+[winlink]
 username = IZ0QWM
 password = password
-
-[winlink]
-host = iz0qwm
+host = server.winlink.org
+port = 8772
 
 [dapnet]
 user = iz0qwm

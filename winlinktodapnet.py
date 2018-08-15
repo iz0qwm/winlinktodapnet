@@ -57,5 +57,7 @@ logger.addHandler(handler)
 logger.setLevel(logging.INFO)
 
 # Leggo le credenziali per WINLINK
-winlinkusername = cfg.get('user','username')
-winlinkpassword = cfg.get('user','password')
+winlinkusername = cfg.get('winlink','username')
+winlinkpassword = cfg.get('winlink','password')
+winlinkhost = cfg.get('winlink','host')
+winlinkport = cfg.get('winlink','port')
