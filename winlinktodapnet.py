@@ -84,12 +84,13 @@ logger.info('Lettera1: %s - Lettera2: %s - Lettera3: %s', lettera1, lettera2, le
 #print lettera2
 #print lettera3
 for index, char in enumerate(winlinkpassword):
+    if index == int(lettera3):
+        carattere_lettera3 = char
+    if index == int(lettera2):
+        carattere_lettera2 = char
     if index == int(lettera1):
         carattere_lettera1 = char
-    elif index == int(lettera2):
-        carattere_lettera2 = char
-    elif index == int(lettera3):
-        carattere_lettera3 = char
+
 logger.info('Lettera1: %s - Lettera2: %s - Lettera3: %s', carattere_lettera1, carattere_lettera2, carattere_lettera3)
 caratteri_da_inviare = carattere_lettera1 + carattere_lettera2 + carattere_lettera3 + "ABC"
 print caratteri_da_inviare
