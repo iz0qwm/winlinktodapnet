@@ -80,6 +80,7 @@ lettera1 = login_password[0:1]
 lettera2 = login_password[1:2]
 lettera3 = login_password[2:3]
 logger.info('Lettera1: %s - Lettera2: %s - Lettera3: %s', lettera1, lettera2, lettera3)
+sleep(2)
 #print lettera1
 #print lettera2
 #print lettera3
