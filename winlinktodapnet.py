@@ -82,6 +82,13 @@ lettera3 = login_password[2:3]
 print lettera1
 print lettera2
 print lettera3
+for index, char in enumerate(winlinkpassword):
+    if index == int(lettera1):
+        print("Carattere corrispondente lettera1:", char)
+    if index == int(lettera2):
+        print("Carattere corrispondente lettera2:", char)
+    if index == int(lettera3):
+        print("Carattere corrispondente lettera3:", char)
 tn.read_until("CMS>\r", 5)
 tn.write("bye\r")
 
