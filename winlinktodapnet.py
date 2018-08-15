@@ -66,10 +66,13 @@ winlinkpassfirst = "CMSTELNET"
 tn = telnetlib.Telnet()
 tn.set_debuglevel(10)
 tn.open(winlinkhost, int(winlinkport))
+print tn.read_eager()
 tn.read_until("Callsign: ", 5)
+print tn.read_eager()
 tn.write(winlinkusername.encode('ascii') + "\n")
 if winlinkpassfirst:
     tn.read_until("Password: ", 5)
+    print tn.read_eager()
     tn.write(winlinkpassfirst.encode('ascii') + "\n")
 tn.read_until("CMS> ", 5)
 print tn.read_eager()
