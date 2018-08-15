@@ -65,10 +65,10 @@ winlinkpassfirst = "CMSTELNET"
 
 tn = telnetlib.Telnet()
 tn.open(winlinkhost, int(winlinkport))
-tn.read_until("Callsign: ")
+tn.read_until("Callsign: ", 5)
 tn.write(winlinkusername + "\n")
 if winlinkpassfirst:
-    tn.read_until("Password: ")
+    tn.read_until("Password: ", 5)
     tn.write(winlinkpassfirst + "\n")
 
 tn.write("exit\n")
