@@ -40,9 +40,12 @@ except:
     logger.error('winlinktodapnet could not find / read config file')
     sys.exit(0)
 
+# Leggo la posizione del logfile
+logfile = cfg.get('misc', 'logfile')
+
 # logging.basicConfig(filename='winlinktodapnet.log',level=logging.INFO) # level=10
 logger = logging.getLogger('wlnk2dapnet')
-handler = logging.FileHandler('winlinktodapnet.log')
+handler = logging.FileHandler(logfile)
 logformat = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 handler.setFormatter(logformat)
 logger.addHandler(handler)
