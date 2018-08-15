@@ -36,6 +36,7 @@ import websocket
 import string
 from random import randint
 import telnetlib
+import getpass
 
 # Leggo il file di configurazione
 cfg = configparser.RawConfigParser()
@@ -61,3 +62,17 @@ winlinkusername = cfg.get('winlink','username')
 winlinkpassword = cfg.get('winlink','password')
 winlinkhost = cfg.get('winlink','host')
 winlinkport = cfg.get('winlink','port')
+winlinkpassfirst = "CMSTELNET"
+
+tn = telnetlib.Telnet(winlinkhost)
+
+tn.read_until("Callsign: ")
+tn.write(winlinkusername + "\n")
+if winlinkpassfirst:
+    tn.read_until("Password: ")
+    tn.write(winlinkpassfirst + "\n")
+
+tn.write("ls\n")
+tn.write("exit\n")
+
+print tn.read_all()
