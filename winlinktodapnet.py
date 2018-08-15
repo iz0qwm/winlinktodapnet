@@ -111,25 +111,24 @@ tn.read_until("CMS>\r", 5)
 tn.write("LM\r")
 # Leggo i messaggi nuovi
 intestazione = tn.read_until("\r")
-logger.info('Intestazione: %s', intestazione)
+logger.info('Intestazione: %s', intestazione[13:])
 if intestazione.find("No pending messages") == -1:
     # Invio messaggio -> DAPNET
-    #create the complete URL to send to DAPNET
+    # create the complete URL to send to DAPNET
     http = urllib3.PoolManager()
     headers = urllib3.util.make_headers(basic_auth= hampagerusername + ':' + hampagerpassword)
-    da = hampagerusername
-    to = hampagerusername
-    payload = '{ "text": "'+ da +': ' + intestazione +'", "callSignNames": [ "' + to + '" ], "transmitterGroupNames": [ "italia" ], "emergency": false}'
+    da = "WINLINK"
+    payload = '{ "text": "'+ da +': ' + intestazione[13:1] +'", "callSignNames": [ "' + hampagerusername + '" ], "transmitterGroupNames": [ "italia" ], "emergency": false}' ": [ "italia" ], "emergency": false}'
 
     try:
-        #try to establish connection to DAPNET
+        # try to establish connection to DAPNET
         response = requests.post(hampagerurl, headers=headers, data=payload)
     except:
-        #connection to DAPNET failed, write warning to console, write warning to error log then bail out
+        # connection to DAPNET failed, write warning to console, write warning to error log then bail out
         logger.error('Invalid DAPNET credentials or payload not well done')
         sys.exit(0)
     else:
-        #connection to DAPNET has been established, continue
+        # connection to DAPNET has been established, continue
         logger.info('-------------------------------------------')
         logger.info('MESSAGGIO INVIATO SU DAPNET')
         logger.info('-------------------------------------------')

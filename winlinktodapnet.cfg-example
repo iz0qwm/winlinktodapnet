@@ -13,4 +13,4 @@ coreurl = /calls
 trxurl = /transmitters
 
 [misc]
-logfile = /opt/winlinktodapnet/winlinktodapnet.log
+logfile = /opt/dapnet/winlinktodapnet/winlinktodapnet.log
