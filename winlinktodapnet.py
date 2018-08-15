@@ -94,6 +94,6 @@ print caratteri_da_inviare
 tn.write(caratteri_da_inviare.encode('ascii') + b"\r")
 tn.read_until("CMS>\r", 5)
 
-tn.write("bye\r")
+#tn.write("bye\r")
 
 
