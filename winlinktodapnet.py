@@ -36,7 +36,6 @@ import websocket
 import string
 from random import randint
 import telnetlib
-import getpass
 
 # Leggo il file di configurazione
 cfg = configparser.RawConfigParser()
