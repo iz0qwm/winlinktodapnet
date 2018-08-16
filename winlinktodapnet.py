@@ -62,7 +62,6 @@ winlinkpassfirst = "CMSTELNET"
 hampagerusername = cfg.get('dapnet','user')
 hampagerpassword = cfg.get('dapnet','password')
 hampagerurl = cfg.get('dapnet','baseurl') + cfg.get('dapnet','coreurl')
-hampagegroup = cfg.get('dapnet','transmittergrp')
 
 tn = telnetlib.Telnet()
 # tn.set_debuglevel(10)
@@ -118,7 +117,7 @@ if intestazione.find("No pending messages") == -1:
     http = urllib3.PoolManager()
     headers = urllib3.util.make_headers(basic_auth= hampagerusername + ':' + hampagerpassword)
     da = "WINLINK"
-    payload = '{ "text": "'+ da +': ' + messaggio +'", "callSignNames": [ "' + hampagerusername + '" ], "transmitterGroupNames": [ "' + hampagegroup + '" ], "emergency": false}'
+    payload = '{ "text": "'+ da +': ' + messaggio +'", "callSignNames": [ "' + hampagerusername + '" ], "transmitterGroupNames": [ "italia" ], "emergency": false}'
 
     try:
         # try to establish connection to DAPNET
