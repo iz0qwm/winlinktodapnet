@@ -112,10 +112,11 @@ logger.info('Intestazione: %s', intestazione[13:])
 if intestazione.find("No pending messages") == -1:
     # Invio messaggio -> DAPNET
     # create the complete URL to send to DAPNET
+    messaggio_ctrlm = intestazione[13:]
+    messaggio = messaggio_ctrlm.replace(r'\r','')
     http = urllib3.PoolManager()
     headers = urllib3.util.make_headers(basic_auth= hampagerusername + ':' + hampagerpassword)
     da = "WINLINK"
-    messaggio = intestazione[13:]
     payload = '{ "text": "'+ da +': ' + messaggio +'", "callSignNames": [ "' + hampagerusername + '" ], "transmitterGroupNames": [ "italia" ], "emergency": false}'
 
     try:
