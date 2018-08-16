@@ -109,12 +109,12 @@ tn.read_until("CMS>\r", 5)
 tn.write("LM\r")
 # Leggo i messaggi nuovi
 intestazione = tn.read_until("\r")
-logger.info('Intestazione: %s', intestazione[13:])
 if intestazione.find("No pending messages") == -1:
     # Invio messaggio -> DAPNET
     # create the complete URL to send to DAPNET
     messaggio_ctrlm = intestazione[13:]
     messaggio = messaggio_ctrlm.replace(r'\r','')
+    logger.info('Intestazione: %s', messaggio)
     http = urllib3.PoolManager()
     headers = urllib3.util.make_headers(basic_auth= hampagerusername + ':' + hampagerpassword)
     da = "WINLINK"
@@ -133,6 +133,7 @@ if intestazione.find("No pending messages") == -1:
         logger.info('MESSAGGIO INVIATO SU DAPNET')
         logger.info('-------------------------------------------')
 else:
+    logger.info('Intestazione: %s', intestazione[13:])
     logger.info('Non invio nulla su pager')
 # Continuo e chiudo la comunicazione
 tn.read_until("CMS>\r", 5)
