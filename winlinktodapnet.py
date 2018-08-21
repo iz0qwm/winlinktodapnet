@@ -67,6 +67,7 @@ hampagegroup = cfg.get('dapnet','transmittergrp')
 tn = telnetlib.Telnet()
 # tn.set_debuglevel(10)
 tn.open(winlinkhost, int(winlinkport))
+logger.info('winlinktodapnet %s engaged...', version)
 logger.info('------------------')
 logger.info('Inizio sessione')
 # Login con password CMSTELNET
