@@ -11,4 +11,3 @@ Per renderlo automatico inserire l'esecuzione nel crontab
 */5 * * * * /opt/dapnet/winlinktodapnet/winlinktodapnet.py
 ```
 
-
