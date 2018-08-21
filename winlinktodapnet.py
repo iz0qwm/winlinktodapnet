@@ -14,7 +14,6 @@
 
 # Author: Raffaello Di Martino IZ0QWM
 # Date: 15.08.2018
-# Version 0.1
 
 import logging
 import urllib2
@@ -28,6 +27,8 @@ import os
 import requests
 import string
 import telnetlib
+import subprocess
+version = subprocess.check_output(["git", "describe"]).strip()
 
 # Leggo il file di configurazione
 cfg = configparser.RawConfigParser()
