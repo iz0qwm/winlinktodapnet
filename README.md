@@ -8,10 +8,6 @@ Se ve ne è una nuova, ne invia l'intestazione via DAPNET.
 
 Per renderlo automatico inserire l'esecuzione nel crontab
 ```
-*/15 * * * * /opt/dapnet/winlinktodapnet/winlinktodapnet.py
+*/5 * * * * /opt/dapnet/winlinktodapnet/winlinktodapnet.py
 ```
 
-Si consiglia di non utilizzare un tempo inferiore ai 15 minuti
-per evitare di ricevere più messaggi con la stessa intestazione email.
-Winlink attende circa 10 minuti, dopo il comando **LM** prima di giudicare *OLD Message*
-un messaggio già listato.
